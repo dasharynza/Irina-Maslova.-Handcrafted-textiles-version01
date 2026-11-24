@@ -1,0 +1,430 @@
+/* ЦВЕТОВАЯ ПАЛИТРА */
+:root {
+    --snow: #FFFBFF;         /* Светлый фон */
+    --almond-cream: #F1DABF; /* Теплый кремовый акцент */
+    --taupe: #92817A;        /* Приглушенный серо-коричневый */
+    --dark-coffee: #362417;  /* Основной темный цвет (заголовки, футер) */
+    --black: #000500;        /* Глубокий черный для основного текста */
+}
+
+/* БАЗОВЫЕ НАСТРОЙКИ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Tahoma, Verdana, Geneva, sans-serif;
+    background-color: var(--snow);
+    color: var(--black);
+    line-height: 1.6;
+}
+
+h1, h2, h3 {
+    font-family: Tahoma, Verdana, Geneva, sans-serif;
+    color: var(--dark-coffee);
+    font-weight: bold;
+    line-height: 1.25;
+}
+
+h1 {
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+}
+
+h2 {
+    font-size: 2.1rem;
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+h3 {
+    font-size: 1.35rem;
+    margin-bottom: 0.6rem;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+section, header, footer {
+    padding: 80px 0;
+}
+
+/* 1. ШАПКА ГЛАВНОЙ СТРАНИЦЫ */
+.hero {
+    background-color: var(--almond-cream);
+    border-bottom: 1px solid var(--taupe);
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.subtitle {
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 0.85rem;
+    color: var(--taupe);
+    font-weight: bold;
+    margin-bottom: 0.6rem;
+}
+
+.bio {
+    font-size: 1.05rem;
+    margin-bottom: 2rem;
+    color: var(--black);
+    max-width: 550px;
+}
+
+.btn {
+    display: inline-block;
+    background-color: var(--dark-coffee);
+    color: var(--snow);
+    padding: 15px 35px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 0.95rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn:hover {
+    background-color: var(--black);
+    transform: translateY(-2px);
+}
+
+.hero-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 15px 15px 0px var(--taupe);
+    display: block;
+}
+
+/* 2. СОДЕРЖАНИЕ (О РАБОТЕ) */
+.about {
+    background-color: var(--snow);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.feature-card {
+    background-color: var(--almond-cream);
+    padding: 35px 25px;
+    border-radius: 8px;
+    border: 1px solid rgba(146, 129, 122, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+/* 3. ГАЛЕРЕЯ: ПАПКИ НА ГЛАВНОЙ СТРАНИЦЕ */
+.gallery {
+    background-color: rgba(241, 218, 191, 0.3);
+}
+
+.folders-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 35px;
+    padding-top: 15px;
+}
+
+.folder-card,
+.photo-block {
+    position: relative;
+    display: block;
+    text-decoration: none;
+    color: var(--black);
+    background-color: var(--snow);
+    border: 2px solid var(--taupe);
+    border-radius: 0 12px 12px 12px;
+    width: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+/* Ограничение размера, если папка стоит отдельно вне сетки */
+.photo-block {
+    /* Отступ для второго ряда папок */
+    .container + .container .folders-grid,
+    .folders-grid + .folders-grid {
+    margin-top: 35px;
+}
+
+    margin-top: 35px; /* Отступ сверху от предыдущего ряда папок */
+}
+
+/* Визуальный "язычок" папки сверху слева */
+.folder-card::before,
+.photo-block::before {
+    content: "";
+    position: absolute;
+    top: -14px;
+    left: -2px;
+    width: 42%;
+    height: 14px;
+    background-color: var(--taupe);
+    border-radius: 8px 8px 0 0;
+    transition: background-color 0.3s ease;
+}
+
+.folder-card:hover,
+.photo-block:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 24px rgba(54, 36, 23, 0.15);
+    border-color: var(--dark-coffee);
+}
+
+.folder-card:hover::before,
+.photo-block:hover::before {
+    background-color: var(--dark-coffee);
+}
+
+.folder-cover,
+.photo-block-image {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: 0 10px 0 0;
+    background-color: var(--almond-cream);
+    border-bottom: 2px solid var(--taupe);
+}
+
+.folder-cover img,
+.photo-block-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.folder-card:hover .folder-cover img,
+.photo-block:hover .photo-block-image img {
+    transform: scale(1.05);
+}
+
+.folder-badge,
+.photo-count {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    background-color: var(--dark-coffee);
+    color: var(--snow);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.folder-info,
+.photo-block-text {
+    padding: 20px;
+}
+
+.folder-info p,
+.photo-block-text p {
+    font-size: 0.95rem;
+    color: var(--taupe);
+}
+
+/* 4. ВНУТРЕННЯЯ СТРАНИЦА ПАПКИ (АЛЬБОМА) */
+.album-header {
+    background-color: var(--almond-cream);
+    border-bottom: 1px solid var(--taupe);
+    padding: 50px 0;
+}
+
+.back-link {
+    display: inline-block;
+    color: var(--dark-coffee);
+    text-decoration: none;
+    font-weight: bold;
+    margin-bottom: 1.2rem;
+    padding: 8px 16px;
+    background-color: var(--snow);
+    border-radius: 4px;
+    border: 1px solid var(--taupe);
+    transition: all 0.2s ease;
+}
+
+.back-link:hover {
+    background-color: var(--dark-coffee);
+    color: var(--snow);
+}
+
+.album-desc {
+    font-size: 1.05rem;
+    max-width: 700px;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.gallery-item {
+    overflow: hidden;
+    border-radius: 8px;
+    aspect-ratio: 1 / 1;
+    border: 2px solid var(--taupe);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+    display: block;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+/* 5. ССЫЛКИ НА ОФИЦИАЛЬНЫЕ СТРАНИЦЫ (ФУТЕР) */
+.contacts {
+    background-color: var(--dark-coffee);
+    color: var(--snow);
+    text-align: center;
+}
+
+.contacts h2 {
+    color: var(--almond-cream);
+    margin-bottom: 1rem;
+}
+
+.contacts-desc {
+    max-width: 600px;
+    margin: 0 auto 2.5rem auto;
+    color: var(--snow);
+    opacity: 0.9;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 3rem;
+}
+
+.social-btn {
+    color: var(--dark-coffee);
+    background-color: var(--almond-cream);
+    text-decoration: none;
+    padding: 12px 28px;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.social-btn:hover {
+    background-color: var(--taupe);
+    color: var(--snow);
+}
+
+.copyright {
+    font-size: 0.85rem;
+    color: var(--taupe);
+}
+
+/* КНОПКА НАВЕРХ */
+.back-to-top {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 45px;
+    height: 45px;
+    background-color: var(--dark-coffee);
+    color: var(--snow);
+    text-decoration: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    box-shadow: 0 4px 10px rgba(54, 36, 23, 0.3);
+    z-index: 1000;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.back-to-top:hover {
+    background-color: var(--black);
+    transform: translateY(-3px);
+}
+
+/* =========================================
+   АДАПТАЦИЯ ПОД НОУТБУКИ, ПЛАНШЕТЫ И ТЕЛЕФОНЫ
+   ========================================= */
+
+@media (max-width: 992px) {
+    h1 {
+        font-size: 2.3rem;
+    }
+    .hero-grid {
+        gap: 30px;
+    }
+    .features-grid, .folders-grid, .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    section, header, footer {
+        padding: 50px 0;
+    }
+    h1 {
+        font-size: 1.9rem;
+    }
+    h2 {
+        font-size: 1.65rem;
+    }
+    .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .bio {
+        margin: 0 auto 2rem auto;
+    }
+    .hero-image {
+        max-width: 350px;
+        margin: 0 auto;
+    }
+    .hero-image img {
+        box-shadow: 10px 10px 0px var(--taupe);
+    }
+    .features-grid, .folders-grid, .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+    .social-links {
+        flex-direction: column;
+        align-items: center;
+    }
+    .social-btn {
+        width: 100%;
+        max-width: 280px;
+    }
+}
